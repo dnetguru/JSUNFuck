@@ -1,11 +1,13 @@
 # JSUNFuck
 The goal of this project is to deobfuscate JavaScript files that were proccessed with JSFuck (http://www.jsfuck.com)
 
-# Test files
+# Usage
 You can run the program with the provided test files or create your own using the jsfuck.js located @ https://github.com/aemkei/jsfuck/blob/master/jsfuck.js
 
 _(NOTE: the jsfuck.js served by www.jsfuck.com is slightly different and I noticed this after I finished writing this tool, I will update it later to work with both versions)_ 
-
+```
+Usage: JSUNFuck.exe <JSFuck Encrypted File> <Output Filename>
+```
 Here's the sample output you should expect from the provided test files ...
 ```
 PS ..\JSUNFucker\JSUNFucker> .\bin\Release\JSUNFuck.exe '.\Test Files\AlertOne.ascii' testRes
