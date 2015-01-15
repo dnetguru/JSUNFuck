@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="JS.ico" />
+    <None Include="Test Files\AlertOne.alt.ascii" />
     <None Include="Test Files\SimpleText.ascii" />
     <None Include="Test Files\AlertOne.ascii" />
   </ItemGroup>

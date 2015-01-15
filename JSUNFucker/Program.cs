@@ -13,7 +13,7 @@ namespace JSUNFuck
         struct TransformResult
         {
             public string resultString;
-            public int heurProbability;
+            public float heurProbability;
         }
 
         private static readonly Regex r = new Regex("([^\\+])\\+(?!\\+)", RegexOptions.Multiline | RegexOptions.Compiled);
@@ -21,19 +21,20 @@ namespace JSUNFuck
         private static void Main(string[] args)
         {
 #if DEBUG
-            args = new[] { "..\\..\\Test Files\\AlertOne.ascii" };
+            args = new[] { "..\\..\\Test Files\\AlertOne.alt.ascii" };
+            //args = new[] { "..\\..\\Test Files\\AlertOne.ascii" };
 #endif
             if (args.Length < 1) Exit("Usage:  JSUNFuck.exe <JSFuck Encrypted File>\n\tJSUNFuck.exe <JSFuck Encrypted File> <Output Filename>");
             else if (!File.Exists(args[0])) Exit("Cannot locate the specified source file ! :(");
             try
             {
-                int currentHeur = int.MaxValue;
+                float currentHeur = 0.0f;
                 string endResult = null;
                 var srcFile = File.ReadAllText(args[0]);
                 foreach (var crAnalysisResultCandidate in Dictionary.crAnalysisResults)
                 {
                     var tRes = RunTransform(srcFile, crAnalysisResultCandidate);
-                    if (tRes.heurProbability < currentHeur) endResult = tRes.resultString;
+                    if (tRes.heurProbability > currentHeur) endResult = tRes.resultString;
                     currentHeur = tRes.heurProbability;
                 }
 
@@ -50,10 +51,11 @@ namespace JSUNFuck
 
         private static TransformResult RunTransform(string srcFile, ICollection crAnalysisRes)
         {
-            int heurCnt = 0;
+            float heurCnt = 0;
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
-                heurCnt += (srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length) / entry.Key.Length;
+                int itrCnt = (srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length) / entry.Key.Length;
+                heurCnt += itrCnt * entry.Key.Length;
                 srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
             return new TransformResult() { heurProbability = heurCnt, resultString = srcFile };
