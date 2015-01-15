@@ -6,14 +6,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace JSUNFucker
+namespace JSUNFuck
 {
     internal class Program
     {
         readonly static Regex r = new Regex("([^\\+])\\+(?!\\+)", RegexOptions.Multiline | RegexOptions.Compiled);
         private static void Main(string[] args)
         {
-            if (args.Length != 2) Exit("Usage: JSUNFucker.exe <JSFuck Encrypted File> <Output Filename>");
+            if (args.Length != 2) Exit("Usage: JSUNFuck.exe <JSFuck Encrypted File> <Output Filename>");
             else if (!File.Exists(args[0])) Exit("Cannot locate the specified source file ! :(");
             try
             {

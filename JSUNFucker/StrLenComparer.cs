@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JSUNFucker
+namespace JSUNFuck
 {
     public class StrLenComparer : IComparer<string>
     {
