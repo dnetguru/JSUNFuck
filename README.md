@@ -4,9 +4,10 @@ The goal of this project is to deobfuscate JavaScript files that were proccessed
 # Usage
 You can run the program with the provided test files or create your own using the jsfuck.js located @ https://github.com/aemkei/jsfuck/blob/master/jsfuck.js
 
-_(NOTE: the jsfuck.js served by www.jsfuck.com is slightly different and I noticed this after I finished writing this tool, I will update it later to work with both versions)_ 
+_NOTE: the jsfuck.js served by www.jsfuck.com is slightly different than the one posted in their repo. This program will use a simple heuristic approach to detect which file was probably used._ 
 ```
-Usage: JSUNFuck.exe <JSFuck Encrypted File> <Output Filename>
+Usage: JSUNFuck.exe <JSFuck Encrypted File>
+       JSUNFuck.exe <JSFuck Encrypted File> <Output Filename>
 ```
 Here's the sample output you should expect from the provided test files ...
 ```
