@@ -18,6 +18,15 @@ PS ..\JSUNFucker\JSUNFucker> type .\testRes2
 THIS IS JUST SOME TEXT WITHOUT eval()
 PS ..\JSUNFucker\JSUNFucker>
 ```
+Running with Mono (*nix environment)
+```
+[root@w0rkb3nch ~]# ls
+JSUNFuck.exe  SimpleText.ascii
+[root@w0rkb3nch ~]# mono JSUNFuck.exe SimpleText.ascii result
+[root@w0rkb3nch ~]# cat result 
+THIS IS JUST SOME TEXT WITHOUT eval()
+[root@w0rkb3nch ~]# 
+```
 # License
 Everything in this repository is licensed under MIT Open Source License and is free to use (without any warranty) and modify with proper attribution.
 
