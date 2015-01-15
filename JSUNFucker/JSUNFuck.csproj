@@ -54,7 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="JS.ico" />
-    <Content Include="Test Files\AlertOne.js" />
+    <None Include="Test Files\SimpleText.ascii" />
+    <None Include="Test Files\AlertOne.ascii" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
