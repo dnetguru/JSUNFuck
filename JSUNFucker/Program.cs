@@ -20,22 +20,27 @@ namespace JSUNFuck
 
         private static void Main(string[] args)
         {
+#if DEBUG
+            args = new[] { "..\\..\\Test Files\\AlertOne.ascii" };
+#endif
             if (args.Length < 1) Exit("Usage:  JSUNFuck.exe <JSFuck Encrypted File>\n\tJSUNFuck.exe <JSFuck Encrypted File> <Output Filename>");
             else if (!File.Exists(args[0])) Exit("Cannot locate the specified source file ! :(");
             try
             {
-                int currentHeur = -1;
+                int currentHeur = int.MaxValue;
                 string endResult = null;
                 var srcFile = File.ReadAllText(args[0]);
                 foreach (var crAnalysisResultCandidate in Dictionary.crAnalysisResults)
                 {
                     var tRes = RunTransform(srcFile, crAnalysisResultCandidate);
-                    if (tRes.heurProbability > currentHeur) endResult = tRes.resultString;
+                    if (tRes.heurProbability < currentHeur) endResult = tRes.resultString;
                     currentHeur = tRes.heurProbability;
                 }
 
                 string res = r.Replace(endResult, "$1").Replace("[][filter][constructor](", "");
-                File.WriteAllText(args[1], res.Substring(res.Length - 3) == ")()" ? res.Substring(0, res.Length - 3) : res);
+                string contents = res.Substring(res.Length - 3) == ")()" ? res.Substring(0, res.Length - 3) : res;
+                if (args.Length == 2) File.WriteAllText(args[1], contents);
+                else Console.WriteLine(contents);
             }
             catch (Exception ex)
             {
@@ -48,9 +53,8 @@ namespace JSUNFuck
             int heurCnt = 0;
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
-                var rc = new Regex(entry.Key, RegexOptions.IgnoreCase);
-                heurCnt += rc.Matches(srcFile).Count;
-                srcFile = rc.Replace(srcFile, entry.Value);
+                heurCnt += (srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length) / entry.Key.Length;
+                srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
             return new TransformResult() { heurProbability = heurCnt, resultString = srcFile };
         }
