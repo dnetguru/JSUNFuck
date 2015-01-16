@@ -51,7 +51,7 @@ namespace JSUNFuck
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
                 // Relative probability of the correct dialect being used
-                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length) / entry.Key.Length) * entry.Key.Length;
+                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length));
                 srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
             return new TransformResult { heurProbability = heurCnt, resultString = srcFile };
