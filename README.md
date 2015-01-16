@@ -16,7 +16,6 @@ PS> .\bin\Release\JSUNFuck.exe '.\Test Files\AlertOne.ascii'
 PS> .\bin\Release\JSUNFuck.exe '.\Test Files\SimpleText.ascii' testRes
 PS> type .\testRes
 THIS IS JUST SOME TEXT WITHOUT eval()
-PS>
 ```
 Running with Mono (*nix environment)
 ```
