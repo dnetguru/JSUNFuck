@@ -15,7 +15,7 @@ namespace JSUNFuck
         private static void Main(string[] args)
         {
 #if DEBUG
-            args = new[] {"..\\..\\Test Files\\AlertOne.alt.ascii"};
+            args = new[] { "..\\..\\Test Files\\AlertOne.alt.ascii" };
             //args = new[] { "..\\..\\Test Files\\AlertOne.ascii" };
 #endif
             if (args.Length < 1)
@@ -50,10 +50,11 @@ namespace JSUNFuck
             float heurCnt = 0;
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
-                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length)/entry.Key.Length) * entry.Key.Length;
+                // Relative probability of the correct dialect being used
+                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length) / entry.Key.Length) * entry.Key.Length;
                 srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
-            return new TransformResult {heurProbability = heurCnt, resultString = srcFile};
+            return new TransformResult { heurProbability = heurCnt, resultString = srcFile };
         }
 
         private static void Exit(string msg)
