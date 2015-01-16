@@ -1,5 +1,5 @@
 # JSUNFuck
-The goal of this project is to deobfuscate/decode (using a cryptanalytic approach) JavaScript files that were proccessed with JSFuck (http://www.jsfuck.com)
+The goal of this project is to deobfuscate/decode (by the way of cryptanalysis) possibly questionable JavaScript files that were proccessed with JSFuck (http://www.jsfuck.com) outside a javascript sandbox and risking blindly executing/parsing the code.
 
 # Usage
 You can run the program with the provided test files or create your own using the jsfuck.js _(located @ https://github.com/aemkei/jsfuck/blob/master/jsfuck.js)_
