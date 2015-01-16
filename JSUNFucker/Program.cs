@@ -50,8 +50,7 @@ namespace JSUNFuck
             float heurCnt = 0;
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
-                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length)/entry.Key.Length)*
-                           entry.Key.Length;
+                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length)/entry.Key.Length) * entry.Key.Length;
                 srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
             return new TransformResult {heurProbability = heurCnt, resultString = srcFile};
