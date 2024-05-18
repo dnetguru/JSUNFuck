@@ -24,12 +24,12 @@ namespace JSUNFuck
             else if (!File.Exists(args[0])) Exit("Cannot locate the specified source file ! :(");
             try
             {
-                float currentHeur = 0.0f;
+                var currentHeur = 0.0f;
                 string endResult = null;
-                string srcFile = File.ReadAllText(args[0]);
+                var srcFile = File.ReadAllText(args[0]);
                 foreach (var crAnalysisResultCandidate in Dictionary.crAnalysisResults)
                 {
-                    TransformResult tRes = RunTransform(srcFile, crAnalysisResultCandidate);
+                    var tRes = RunTransform(srcFile, crAnalysisResultCandidate);
                     if (tRes.heurProbability > currentHeur) endResult = tRes.resultString;
                     currentHeur = tRes.heurProbability;
                 }
@@ -51,7 +51,7 @@ namespace JSUNFuck
             foreach (KeyValuePair<string, string> entry in crAnalysisRes)
             {
                 // Relative probability of the correct dialect being used
-                heurCnt += ((srcFile.Length - srcFile.Replace(entry.Key, String.Empty).Length));
+                heurCnt += srcFile.Length - srcFile.Replace(entry.Key, string.Empty).Length;
                 srcFile = srcFile.Replace(entry.Key, entry.Value);
             }
             return new TransformResult { heurProbability = heurCnt, resultString = srcFile };
